@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<windows.h>
+#include<string.h>
+#include<time.h>
+char name[100];
+int count1=0,count2=0,count=0;
+
+int main ()
+{
+	void game();
+	int n; 
+	while(1){
+		game();
+		printf("游戏结束！\n\n");
+		printf("再来一局请输入1。否则结束游戏。\n");count++;
+	    printf("你一共和电脑玩了 %d 盘剪刀石头布\n\n",count);
+    	printf("比赛情况：你赢了 %d 盘。\n输了 %d 盘。\n\n",count1,count2);
+		scanf("%d",&n);
+		if(n!=1)break;
+	}
+	printf("游戏结束！\n\n");
+	printf("你一共和电脑玩了 %d 盘剪刀石头布\n\n",count);
+	printf("比赛情况：你赢了 %d 盘。\n输了 %d 盘。\n\n",count1,count2);
+
+	system("pause");
+	return 0;
+}
+
+void game()
+{
+	int a,b,sum1=0,sum2=0;
+	int i=1;
+	printf("***********石头剪刀布游戏规则**********\n\n");
+	printf("----------此游戏采取人机对战7局制------------\n
+ 玩家若在游戏过程中赢了5局以上，则玩家赢!\n
+ 否则其他情况均为电脑赢！\n
+ 各位玩家加油哦\n 
+ 希望幸运女神一直眷顾你噢^-^ \n\n");
+
+	while(i++<=7){ 
+        while(1){
+		a=rand()%3;
+		printf("*******************石头剪刀布游戏*****************\n\n");
+		printf("请输入玩家姓名:\t");
+		printf("***玩家:\t%s\n",name);
+		fgets(name,99,stdin);
+		name[strlen(name)-1]='\0';
+		printf("请输入你要出的拳（石头为 1 ，剪刀为 2 ，布为 0 ）：");
+		scanf("%d",&b);
+		printf("\n");
+		if(b>2||b<0){
+			printf("输入错误，请重新输入!\n");
+		}else if(a==1){
+			printf("电脑出的拳是：石头\n");
+			if(b==1){
+				printf("你出的拳是：石头。\n\n平局！\n\n");
+			}else if(b==2){
+				printf("你出的拳是：剪刀。\n\n你输了！\n\n");
+				sum2++;
+			}else{
+				printf("你出的拳是：布。\n\n你赢了！\n\n");
+				sum1++;
+			}
+		}else if(a==2){
+			printf("电脑出的拳是：剪刀\n");
+			if(b==1){
+				printf("你出的拳是：石头。\n\n你赢了！\n\n");
+				sum1++;
+			}else if(b==2){
+				printf("你出的拳是：剪刀。\n\n平局！\n\n");
+			}else{
+				printf("你出的拳是：布。\n\n你输了！\n\n");
+				sum2++;
+			}
+		}else{
+			printf("电脑出的拳是：布\n");
+			if(b==1){
+				printf("你出的拳是：石头。\n\n你输了！\n\n");
+				sum2++;
+			}else if(b==2){
+				printf("你出的拳是：剪刀。\n\n你赢了！\n\n");
+				sum1++;
+			}else{
+				printf("你出的拳是：布。\n\n平局！\n\n");
+			}
+		}
+		if(i==8){
+			if(sum1>=5){
+				printf("------------------------------------------------------\n\n");
+				printf("		好厉害！你赢了电脑哦！\n\n");
+				printf("		恭喜你获得   *最强大脑*   称号\n\n");
+				printf("------------------------------------------------------\n");
+				count1++;
+			}else{
+				printf("------------------------------------------------------\n\n");
+				printf("  真可惜，电脑赢了！不过别泄气哦，再来一次试试！\n\n");
+				printf("------------------------------------------------------\n");
+				count2++;
+			}
+			
+              break;
+  	   }break;
+        }
+	}
+} 
